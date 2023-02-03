@@ -1,4 +1,4 @@
-body{
+#gridArea{
     display: flex;
     background-color: slateblue;
     justify-content: center;
@@ -27,5 +27,5 @@ body{
     
 }
 #testBtn{
-    background-color: cadetblue;
+    background-color: rgb(141, 52, 185);
 }

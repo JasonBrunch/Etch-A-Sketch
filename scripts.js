@@ -1,5 +1,6 @@
-const testBtn = document.querySelector('#testBtn');
+//GLOBAL VARIABLES RESTING PLACE
 const gridContainer = document.querySelector('#gridContainer');
+let mouseDown = false;
 
 //START POINT
 //MAKE THE GRID CONTENT DIVS BASED ON INPUT
@@ -22,29 +23,62 @@ function addDivsToContainer(amount, columnAmt){
         //ADD A unqiue ID TO THE DIV
         newDiv.setAttribute("id",`button${i}`);
         gridContainer.appendChild(newDiv);
-        //ADDS THE CHANGE COLOR EVENT TO THE GRID ITEM
-        newDiv.addEventListener("click", changeColour);
+        //EVENTS THAT TURN ON THE COLOURING WHEN MOUSE BUTTON IS DOWN
+        newDiv.addEventListener("mousedown", gridItemMouseDown);
+        newDiv.addEventListener("mouseup", gridItemMouseUp);        
+        newDiv.addEventListener("mouseenter", gridItemMouseEnter);  
     }
 }
-function changeColour(){
+function gridItemMouseDown(){
+    console.log("THE MOUSE IS DOWN");
+    mouseDown = true;
     const buttonID = "#" + this.id;
+    changeColour(buttonID);
+}
+function gridItemMouseUp(){
+    console.log("MOUSE IS UP!");
+    mouseDown = false;
+}
+function gridItemMouseEnter(){
+    console.log("MOUSE ENTER -- MOUSES DOWN = " + mouseDown);
+    if(mouseDown === true){
+        const buttonID = "#" + this.id;
+        changeColour(buttonID);
+    }
+}
+
+function changeColour(buttonID){ 
     buttonElement = document.querySelector(buttonID);
     buttonElement.style.setProperty("background-color","yellow");
 }
 
-var mouseDown = 0;
-document.body.onmousedown = function() { 
-  ++mouseDown;
-}
-document.body.onmouseup = function() {
-  --mouseDown;
-}
 
-if(mouseDown){
-    console.log("CRICKEY");
+//DEVELOPMENT WORKPAD AREA
+/*
+//CHECK IF MOUSE IS DOWN WHEN ENTERING
+
+
+
+
+
+//CODE FOR MOUSE ENTERING AND LEAVE AND CLICKING - SAVE THESE ALL TO YOUR SHEET
+document.getElementById("testBtn").addEventListener("mousedown", gridItemMouseDown);
+document.getElementById("testBtn").addEventListener("mouseup", myFunction2);
+
+
+document.getElementById("testBtn").addEventListener("mouseenter", mouseEnter);
+document.getElementById("testBtn").addEventListener("mouseleave", mouseLeave);
+
+function mouseEnter() {
+    console.log("MOUSE ENTER");
+  }
+  
+  function mouseLeave() {
+    console.log("MOUSE LEAVE");
   }
 
-//object.addEventListener("mousedown", onDownFunc());
-function testFunction(){
-    alert("YEAH BOYS")
-}
+
+function myFunction() {
+  console.log("MOUSE DOWN");
+}function myFunction2(){console.log("MOUSE UP")};
+*/
