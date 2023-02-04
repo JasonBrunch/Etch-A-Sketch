@@ -7,6 +7,7 @@ let gridSize = "256, 16";
 //START POINT
 //MAKE THE GRID CONTENT DIVS BASED ON INPUT
 CreateGridContents()
+levelTextUpdate();
 
 function CreateGridContents(){
     addDivsToContainer(256,16);   
@@ -59,14 +60,18 @@ function changeColour(buttonID){
 function levelUp(){
     if(level < 1){
         level++
-        CreateGridContents(gridSize);
+        console.log("LEVEL UP " + level);
+        levelTextUpdate();
+        CreateGridContents();
         changeImgQuote();
     }
 }
 function levelDown(){
-    if(level < 0){
+    if(level > 0){
         level--
-        CreateGridContents(gridSize);
+        console.log("LEVEL DOWN: " + level);
+        levelTextUpdate();
+        CreateGridContents();
         changeImgQuote();
     }
 }
@@ -76,7 +81,7 @@ function changeImgQuote(){
     let quoteText = document.getElementById("quote");
     switch(level){
         case 0: 
-            imageSource.src = "eldenRing.jpeg";
+            imageSource.src = "eldenRing.jpg";
             quoteText.innerHTML = "\"Join The Serpent King As Family. Together, We Shall Devour The Very Gods.\""
             break;
         case 1: imageSource.src = "portal.jpg";
@@ -90,6 +95,10 @@ function changeSize(amt){
     let columns = amt;
     addDivsToContainer(total,columns);
     console.log("ADDING TOTAL OF" + total + "AND THIS MANY COLUMNS" + columns);
+}
+function levelTextUpdate(){
+    let levelHeader = document.querySelector("#levelText");
+    levelHeader.innerHTML = "Level: " + level;
 }
 
 //const changeSize1 = changeSize(8);
