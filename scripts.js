@@ -3,6 +3,7 @@ const gridContainer = document.querySelector('#gridContainer');
 let mouseDown = false;
 let level = 0;
 let gridSize = "256, 16";
+let answer = "ELDEN RING";
 
 //START POINT
 //MAKE THE GRID CONTENT DIVS BASED ON INPUT
@@ -75,6 +76,29 @@ function levelDown(){
         changeImgQuote();
     }
 }
+function guess(){
+    
+    
+        let response = document.getElementById("answer").value;
+        //CAPITALIZE ANSWER
+        response = response.toUpperCase();
+        //CHECK IF ANSWER CONTAINS THE ANSWER STRING
+        if(response.includes(answer)){
+            
+            document.getElementById("response").innerHTML = "Correct!";
+        }
+        else{
+            document.getElementById("response").innerHTML = "Try Again";
+        }
+
+
+
+        //SETS TEXT RESPONSE FIELD
+        
+}
+
+
+
 
 function changeImgQuote(){
     let imageSource = document.getElementById("gameImage");
@@ -83,9 +107,11 @@ function changeImgQuote(){
         case 0: 
             imageSource.src = "eldenRing.jpg";
             quoteText.innerHTML = "\"Join The Serpent King As Family. Together, We Shall Devour The Very Gods.\""
+            answer = "Elden Ring";
             break;
         case 1: imageSource.src = "portal.jpg";
             quoteText.innerHTML = "\"Because despite your violent behavior, the only thing you've managed to break so far is my heart.\""
+            answer = "PORTAL"
             break;
     }
     //"\"A string inside double quote\"";
@@ -108,6 +134,7 @@ document.getElementById("levelDown").addEventListener("click", levelDown);
 document.getElementById("sizeBtn1").addEventListener("click", function(){changeSize(8)},false)
 document.getElementById("sizeBtn2").addEventListener("click", function(){changeSize(16)},false)
 document.getElementById("sizeBtn3").addEventListener("click", function(){changeSize(32)},false);
+document.getElementById("submit").addEventListener("click", guess);
 
 //addEventListener('change',function() {
  //   getSelection(self)
