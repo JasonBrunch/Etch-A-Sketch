@@ -56,10 +56,16 @@ function changeColour(buttonID){
     //buttonElement.style.setProperty("visibility","hidden");
 }
 
-function levelUp()
-{
+function levelUp(){
     if(level < 1){
         level++
+        CreateGridContents(gridSize);
+        changeImgQuote();
+    }
+}
+function levelDown(){
+    if(level < 0){
+        level--
         CreateGridContents(gridSize);
         changeImgQuote();
     }
@@ -79,8 +85,25 @@ function changeImgQuote(){
     }
     //"\"A string inside double quote\"";
 }
+function changeSize(amt){
+    let total = amt * amt;
+    let columns = amt;
+    addDivsToContainer(total,columns);
+    console.log("ADDING TOTAL OF" + total + "AND THIS MANY COLUMNS" + columns);
+}
 
-document.getElementById("testBtn").addEventListener("click", levelUp);
+//const changeSize1 = changeSize(8);
+//ADDS THE EVENT TO THE LEVELUP BUTTON
+document.getElementById("levelUp").addEventListener("click", levelUp);
+document.getElementById("levelDown").addEventListener("click", levelDown);
+document.getElementById("sizeBtn1").addEventListener("click", function(){changeSize(8)},false)
+document.getElementById("sizeBtn2").addEventListener("click", function(){changeSize(16)},false)
+document.getElementById("sizeBtn3").addEventListener("click", function(){changeSize(32)},false);
+
+//addEventListener('change',function() {
+ //   getSelection(self)
+//},false);
+
 
 //DEVELOPMENT WORKPAD AREA
 /*
