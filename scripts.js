@@ -1,6 +1,8 @@
 //GLOBAL VARIABLES RESTING PLACE
 const gridContainer = document.querySelector('#gridContainer');
 let mouseDown = false;
+let level = 0;
+let gridSize = "256, 16";
 
 //START POINT
 //MAKE THE GRID CONTENT DIVS BASED ON INPUT
@@ -54,8 +56,31 @@ function changeColour(buttonID){
     //buttonElement.style.setProperty("visibility","hidden");
 }
 
+function levelUp()
+{
+    if(level < 1){
+        level++
+        CreateGridContents(gridSize);
+        changeImgQuote();
+    }
+}
 
+function changeImgQuote(){
+    let imageSource = document.getElementById("gameImage");
+    let quoteText = document.getElementById("quote");
+    switch(level){
+        case 0: 
+            imageSource.src = "eldenRing.jpeg";
+            quoteText.innerHTML = "\"Join The Serpent King As Family. Together, We Shall Devour The Very Gods.\""
+            break;
+        case 1: imageSource.src = "portal.jpg";
+            quoteText.innerHTML = "\"Because despite your violent behavior, the only thing you've managed to break so far is my heart.\""
+            break;
+    }
+    //"\"A string inside double quote\"";
+}
 
+document.getElementById("testBtn").addEventListener("click", levelUp);
 
 //DEVELOPMENT WORKPAD AREA
 /*
@@ -70,7 +95,7 @@ document.getElementById("testBtn").addEventListener("mousedown", gridItemMouseDo
 document.getElementById("testBtn").addEventListener("mouseup", myFunction2);
 
 
-document.getElementById("testBtn").addEventListener("mouseenter", mouseEnter);
+
 document.getElementById("testBtn").addEventListener("mouseleave", mouseLeave);
 
 function mouseEnter() {

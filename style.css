@@ -5,11 +5,28 @@
     position: relative;
     width: 400px;
     height: 400px;
+
+    border-style: solid;
+    border-width: 10px;
+}
+#testElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 h1{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 52;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+h2{
+    margin-bottom:30px;
 }
 img{
     max-width: 100%;
@@ -27,7 +44,6 @@ img{
 
 .grid-item{
     display: grid;
- 
     background-color: violet;
    
 }
@@ -46,12 +62,15 @@ img{
     position: absolute;
     top:0;
     left:0;
-    opacity: 0.7;
+    
     background: #0057e3;
 }
 #quote{
     display: flex;
+    margin-left: 25%;
+    margin-right: 25%;
     justify-content: center;
     align-items: center;
     text-align: center;
+    
 }
