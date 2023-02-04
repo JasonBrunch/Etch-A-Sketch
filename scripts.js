@@ -22,6 +22,7 @@ function addDivsToContainer(amount, columnAmt){
         let newDiv = document.createElement("div");      
         //ADD A unqiue ID TO THE DIV
         newDiv.setAttribute("id",`button${i}`);
+        newDiv.style.setProperty("background-color","blue");
         gridContainer.appendChild(newDiv);
         //EVENTS THAT TURN ON THE COLOURING WHEN MOUSE BUTTON IS DOWN
         newDiv.addEventListener("mousedown", gridItemMouseDown);
@@ -49,8 +50,11 @@ function gridItemMouseEnter(){
 
 function changeColour(buttonID){ 
     buttonElement = document.querySelector(buttonID);
-    buttonElement.style.setProperty("background-color","yellow");
+    buttonElement.style.setProperty("background-color","transparent");
+    //buttonElement.style.setProperty("visibility","hidden");
 }
+
+
 
 
 //DEVELOPMENT WORKPAD AREA
