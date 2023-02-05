@@ -139,7 +139,9 @@ function changeImgQuote(){
             quoteText.innerHTML = "\"What is a man? [flings his wine glass aside] A miserable little pile of secrets! But enough talk! Have at you!\""
             answer = "CASTLEVANIA";
             break;
-        case 3: imageSource.src = "metalGear.png";
+        case 3: 
+        console.log("SETTING IMAGE CASE 3 NOW");
+        imageSource.src = "metalgear.png";
             quoteText.innerHTML = "\"Were not tools of the government or anyone else. Fighting was the only thing I was good at, but at least I always fought for what I believed in.\""
             answer = "METAL GEAR";
             break;
