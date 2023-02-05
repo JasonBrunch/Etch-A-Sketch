@@ -4,11 +4,14 @@ let mouseDown = false;
 let level = 0;
 let gridSize = "256, 16";
 let answer = "ELDEN RING";
+let score = 0;
+let arrayOfLevelsCompleted = [false,false,false,false,false]
 
 //START POINT
 //MAKE THE GRID CONTENT DIVS BASED ON INPUT
 CreateGridContents()
 levelTextUpdate();
+updateScore();
 
 function CreateGridContents(){
     addDivsToContainer(256,16);   
@@ -26,7 +29,7 @@ function addDivsToContainer(amount, columnAmt){
         let newDiv = document.createElement("div");      
         //ADD A unqiue ID TO THE DIV
         newDiv.setAttribute("id",`button${i}`);
-        newDiv.style.setProperty("background-color","blue");
+        newDiv.style.setProperty("background-color","black");
         gridContainer.appendChild(newDiv);
         //EVENTS THAT TURN ON THE COLOURING WHEN MOUSE BUTTON IS DOWN
         newDiv.addEventListener("mousedown", gridItemMouseDown);
@@ -57,14 +60,23 @@ function changeColour(buttonID){
     buttonElement.style.setProperty("background-color","transparent");
     //buttonElement.style.setProperty("visibility","hidden");
 }
+function checksIfLevelCompleted(){
+    let currentLevel = arrayOfLevelsCompleted[level];
+    if(currentLevel == true){
+        alert("LEVEL COMPLETED");
+    }
+    else{console.log("LEVEL NOT COMPLETed")};
+}
+
 
 function levelUp(){
-    if(level < 1){
+    if(level < 4){
         level++
         console.log("LEVEL UP " + level);
         levelTextUpdate();
         CreateGridContents();
         changeImgQuote();
+        
     }
 }
 function levelDown(){
@@ -77,26 +89,35 @@ function levelDown(){
     }
 }
 function guess(){
-    
-    
+    if(arrayOfLevelsCompleted[level] == false){
         let response = document.getElementById("answer").value;
-        //CAPITALIZE ANSWER
         response = response.toUpperCase();
         //CHECK IF ANSWER CONTAINS THE ANSWER STRING
-        if(response.includes(answer)){
-            
+        console.log("CHECKING  " + response +  "AGAINST: "+ answer);
+        if(response.includes(answer)){   
             document.getElementById("response").innerHTML = "Correct!";
+            score++;
+            //SETS LEVEL COMPLETED TO TRUE FOR THE TEXT AND SUBMIT BUTTON TO KNOW ABOUT IT;
+            arrayOfLevelsCompleted[level] = true;
+            updateScore();
+            levelUp();
         }
-        else{
-            document.getElementById("response").innerHTML = "Try Again";
-        }
-
-
-
-        //SETS TEXT RESPONSE FIELD
-        
+            else{
+                document.getElementById("response").innerHTML = "Try Again";
+            }
+    }
+    document.getElementById("answer").value = "";
 }
-
+function updateScore()
+{
+    let scoreText = document.getElementById("scoreText");
+    console.log("UPDATING SCORE, CURRENT SCORE = " +score);
+    scoreText.innerHTML = "Score: " + score + " / 5";
+    //CHECKS WIN CONDITION
+    if(score == 5){
+        document.getElementById("response").innerHTML = "YOU WIN!"
+    }
+}
 
 
 
@@ -107,14 +128,27 @@ function changeImgQuote(){
         case 0: 
             imageSource.src = "eldenRing.jpg";
             quoteText.innerHTML = "\"Join The Serpent King As Family. Together, We Shall Devour The Very Gods.\""
-            answer = "Elden Ring";
+            answer = "ELDEN RING";
             break;
         case 1: imageSource.src = "portal.jpg";
             quoteText.innerHTML = "\"Because despite your violent behavior, the only thing you've managed to break so far is my heart.\""
-            answer = "PORTAL"
+            answer = "PORTAL";
+            console.log("SET ANSWER TO PORTAL");
             break;
-    }
-    //"\"A string inside double quote\"";
+        case 2: imageSource.src = "castlevania.jpg";
+            quoteText.innerHTML = "\"What is a man? [flings his wine glass aside] A miserable little pile of secrets! But enough talk! Have at you!\""
+            answer = "CASTLEVANIA";
+            break;
+        case 3: imageSource.src = "metalGear.png";
+            quoteText.innerHTML = "\"Were not tools of the government or anyone else. Fighting was the only thing I was good at, but at least I always fought for what I believed in.\""
+            answer = "METAL GEAR";
+            break;
+        case 4: imageSource.src = "lastofus.jpg";
+            quoteText.innerHTML = "\"Ive struggled a long time with surviving, but no matter what you have to find something to fight for.\""
+            answer = "LAST OF US";
+            break;
+        }       
+
 }
 function changeSize(amt){
     let total = amt * amt;
@@ -123,8 +157,10 @@ function changeSize(amt){
     console.log("ADDING TOTAL OF" + total + "AND THIS MANY COLUMNS" + columns);
 }
 function levelTextUpdate(){
+    checksIfLevelCompleted()
     let levelHeader = document.querySelector("#levelText");
-    levelHeader.innerHTML = "Level: " + level;
+    let levelUpdated = level + 1;
+    levelHeader.innerHTML = "Level: " + levelUpdated;
 }
 
 //const changeSize1 = changeSize(8);

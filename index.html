@@ -9,7 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Guess the Game</h1>
+    <div class="centerText">
+        <h1>Guess the Game Quote</h1>
+    </div>
+    
     <h2 id="quote">"Join The Serpent King As Family. Together, We Shall Devour The Very Gods."</h1>
     <div id="guessContainer">
 
@@ -25,33 +28,43 @@
 
 
     </div>
-    <h2 class="centerText" id="response">response</h2>
+    <h2 class="centerText" id="response">Reveal the Hint Below</h2>
     <div id ="testElement">
         
         <div id="gridArea">
             <div class="box"><img src="eldenRing.jpg" id="gameImage"></div>
+            <br>
             <div id="gridContainer"></div>
         </div>
     </div>
-    <div class="centerText">
-        <h2 id="levelText">Level 69</h2>
+    <div class="poorlyNamedClass">
+        <h2 id="levelText" class="underGrid">Level 69</h2>
+        <br> 
+        <h2 id="scoreText" class="underGrid">Score</h2>
+        
     </div>
-    <div id ="leftBtnArea">
+    <div class="leftBtnArea">
+       
 
         
-        <button class="sizeBtn" id="levelUp">Level++</button>
         
-        <button class="sizeBtn" id="levelDown">Level--</button>
+        <button class="sizeBtn" id="levelDown">Prev</button>
+        <button class="sizeBtn" id="levelUp">Next</button>
+        
+       
+    </div>
+    <div class ="leftBtnArea">
         <button class="sizeBtn" id="sizeBtn1">8x8</button>
         <button class="sizeBtn" id="sizeBtn2">16x16</button>
         <button class="sizeBtn" id="sizeBtn3">32x32</button>
 
-
-
     </div>
 
-
-    <div class="signature">Developed By SpaceDog GITHUBLINK</div>
+    <div class = signatureContainer>
+       <div class="signature">SpaceDog</div>
+       <a href="https://github.com/JasonBrunch"><img src="gitLogo.png"></a> 
+    </div>
+    
     
     
    
